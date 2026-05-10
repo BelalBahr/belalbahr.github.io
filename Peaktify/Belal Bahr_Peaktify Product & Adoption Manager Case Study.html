@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peaktify: Product &amp; Adoption Manager Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #111827;
+      --accent-light: #f3f4f6;
+      --max-w: 760px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ── */
+    .wrapper {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Cover ── */
+    .cover {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+    .cover-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .cover h1 {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .cover-meta {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .cover-meta span + span::before { content: '·'; margin-right: 24px; color: var(--border); }
+
+    /* ── Nav ── */
+    .toc {
+      background: var(--accent-light);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-bottom: 64px;
+    }
+    .toc-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .toc ol {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .toc li { counter-increment: toc; }
+    .toc a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13.5px;
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      padding: 2px 0;
+    }
+    .toc a:hover { color: var(--muted); }
+    .toc a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      min-width: 22px;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 72px;
+      padding-top: 8px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 26px;
+    }
+    .section h2 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin: 28px 0 10px;
+    }
+    h3:first-child { margin-top: 0; }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+    ul { list-style: disc; }
+    ol { list-style: decimal; }
+    li { margin-bottom: 6px; }
+    li:last-child { margin-bottom: 0; }
+
+    strong { font-weight: 600; }
+
+    /* ── Tables ── */
+    .table-wrap { overflow-x: auto; margin: 20px 0; }
+    .table-wrap-wide {
+      overflow-x: auto;
+      margin: 20px -80px;
+      padding: 0 80px;
+    }
+    @media (max-width: 900px) {
+      .table-wrap-wide { margin: 20px 0; padding: 0; }
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--accent-light); }
+
+    /* ── Callout ── */
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      background: var(--accent-light);
+      border-radius: 0 4px 4px 0;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    /* ── Tag / Pill ── */
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background: var(--accent-light);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .tag.high { background: #fef2f2; color: #b91c1c; }
+    .tag.medium { background: #fffbeb; color: #92400e; }
+    .tag.low { background: #f0fdf4; color: #15803d; }
+    .tag.p0 { background: #111827; color: #fff; }
+    .tag.p1 { background: #374151; color: #fff; }
+    .tag.p2 { background: var(--accent-light); color: var(--text); }
+    .tag.p3 { background: var(--accent-light); color: var(--muted); }
+
+    /* ── PRD Spec block ── */
+    .spec-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 12px 24px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    /* ── 30-day grid ── */
+    .week-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .week-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 18px;
+    }
+    .week-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .week-card ul {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 13.5px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 48px;
+      margin-top: 40px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ── Print ── */
+    @media print {
+      .toc { display: none; }
+      .section { page-break-inside: avoid; }
+      body { font-size: 13px; }
+      .cover { padding: 40px 0 32px; }
+    }
+
+    @media (max-width: 600px) {
+      .week-grid { grid-template-columns: 1fr; }
+      .spec-row { grid-template-columns: 1fr; gap: 4px; }
+      .spec-label { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-label">Candidate Case Exercise</div>
+    <h1>Product &amp; Adoption Manager<br/>Case Study: Peaktify</h1>
+    <div class="cover-meta">
+      <span><strong>Belal Bahr</strong></span>
+      <span>Role: Product &amp; Adoption Manager</span>
+      <span>April 2026</span>
+    </div>
+  </div>
+
+  <!-- Table of Contents -->
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol style="counter-reset: toc;">
+      <li><a href="#part1">What is Peaktify?</a></li>
+      <li><a href="#part2">Diagnose the Situation</a></li>
+      <li><a href="#part3">Prioritization &amp; Decision-Making</a></li>
+      <li><a href="#part4">Backlog Proposal</a></li>
+      <li><a href="#part5">PRD: Guided First-Run Experience</a></li>
+      <li><a href="#part6">30-Day Adoption &amp; Field Execution Plan</a></li>
+      <li><a href="#part7">Questions, Assumptions &amp; Trade-offs</a></li>
+    </ol>
+  </nav>
+
+  <!-- Part 1 -->
+  <section class="section" id="part1">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>What is Peaktify?</h2>
+    </div>
+
+    <h3>The Product</h3>
+    <p>Peaktify is an enterprise software platform designed to structure and accelerate the complex process of software delivery and implementation. Its initial focus is enterprise software implementation teams, specifically the systems integrators and consulting partners who deliver Microsoft Dynamics 365 engagements. It addresses a specific and costly problem: project truth fragments across the lifecycle of a complex implementation, scattered across workshops, emails, meeting notes, and tribal knowledge.</p>
+    <p>The platform works across three main pillars: structured signal capture, implementation-grade artifact generation, and execution support.</p>
+    <p>Peaktify's competitive moat is not the AI generation itself, but the governance layer around it. Every output is human-reviewed, human-approved, and traceable. The AI handles the administrative burden of structuring and drafting; humans retain ownership of every decision and deliverable.</p>
+
+    <h3>Most Important Current Use Case</h3>
+    <p>The highest-value use case today is structured discovery to implementation-grade BRD generation. This is where implementation projects are most at risk: raw signal exists but is unstructured, stakeholders have divergent mental models, and a missed requirement at this phase is the most expensive one to fix later. If Peaktify can reliably convert workshops and captured artifacts into a clean, traceable, approval-ready BRD, that alone justifies the partnership for most SIs.</p>
+
+    <h3>What Peaktify Must Not Become</h3>
+    <p>At this stage, Peaktify must be careful not to become two things. First, a document generation tool. If users treat it as a prompt-to-output shortcut rather than a structured delivery workflow, the governance moat erodes and the product becomes a commodity. The value is not the BRD; it is the governed process that produced it.</p>
+    <p>Second, another source of tool fatigue. Enterprise implementation teams already operate across a fragmented stack of email, meetings, spreadsheets, and project tools. If Peaktify adds process overhead rather than absorbing it, adoption will stall regardless of output quality. The product must be workflow-native in practice, not just in positioning.</p>
+  </section>
+
+  <!-- Part 2 -->
+  <section class="section" id="part2">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Diagnose the Situation</h2>
+    </div>
+
+    <h3>Signal Map</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Observation</th>
+            <th>Category</th>
+            <th>Signal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>"First 15 minutes not obvious": users don't know where to start</td>
+            <td>Adoption / Onboarding</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Late MoM review after workshop capture</td>
+            <td>Workflow / Process</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Artifacts sitting in Inbox unassigned or routed late</td>
+            <td>Product / UX + Workflow</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>BRD exported with unresolved Open Items</td>
+            <td>Product / UX</td>
+            <td><span class="tag high">High</span></td>
+          </tr>
+          <tr>
+            <td>Work-cycle agent vs. P / Command Center confusion</td>
+            <td>Product / UX</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Private Vault not used consistently</td>
+            <td>Adoption / Onboarding</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Four stakeholders with four conflicting priority views</td>
+            <td>Internal Operating</td>
+            <td><span class="tag medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Request for cross-project analytics and dashboards</td>
+            <td>Future Roadmap</td>
+            <td><span class="tag low">Low</span></td>
+          </tr>
+          <tr>
+            <td>Request to auto-send MoM without human approval</td>
+            <td>Low Signal / Risky</td>
+            <td><span class="tag low">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Underlying Problems</h3>
+    <p>The feedback surface presents as a list of features and frustrations. The real problems underneath are structural.</p>
+    <ol>
+      <li><strong>No guided entry point.</strong> Peaktify has multiple valid starting surfaces but no opinionated recommended path for first-time users. Users self-route inconsistently, creating divergent first experiences and uneven adoption across the team. This is not a UX polish problem; it is a missing onboarding mental model.</li>
+      <li><strong>No visible document lifecycle.</strong> Users cannot distinguish a draft BRD from a review-ready one from a final one. Without clear states, outputs reach external hands before they are ready. The Open Items incident is a symptom of this, not the root cause.</li>
+      <li><strong>No triage discipline for artifacts.</strong> The Inbox is a capture point, but there is no enforced routing step. When routing is optional and informal, important items sit unprocessed and the outputs built on them inherit that deficit. As one reviewer put it: "If the inputs are not routed cleanly, the outputs stop feeling trustworthy."</li>
+      <li><strong>Stakeholder misalignment is a governance gap, not a product gap.</strong> Four divergent priority views cannot be resolved by adding features. The fix is a structured prioritization process, clear decision rights, and explicit trade-off communication. This is precisely what a Product and Adoption Manager role exists to provide.</li>
+    </ol>
+
+    <h3>Why Signal Level Matters</h3>
+    <p>High-signal observations are those that affect multiple users, block the core value loop, or represent a trust failure that has already occurred. The "first 15 minutes" problem qualifies because it affects every new user without exception. The BRD export incident qualifies because it is not a hypothetical risk; it already happened and damaged output confidence. Inbox routing failures qualify because they sit directly upstream of output quality.</p>
+    <p>Medium-signal observations represent real friction but are secondary to the trust and entry-point failures. The agent confusion and Private Vault underutilization matter, but users who cannot complete their first project end-to-end will not benefit from fixing them yet.</p>
+    <p>Low-signal observations come from single stakeholders, ask for capabilities outside the current phase, or conflict with the product's core design principles. Dashboard requests are premature while the underlying workflow is still unreliable. The auto-send MoM request is not just low signal; it directly conflicts with Peaktify's human-led governance model and should not be treated as a standard feature request.</p>
+  </section>
+
+  <!-- Part 3 -->
+  <section class="section" id="part3">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>Prioritization &amp; Decision-Making</h2>
+    </div>
+
+    <h3>Prioritization Framework</h3>
+    <p>Each item was evaluated using two complementary frameworks: MoSCoW for decision priority and Impact vs. Effort for sequencing.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Item</th>
+            <th>MoSCoW</th>
+            <th>Impact</th>
+            <th>Effort</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Guided First-Run Experience</td>
+            <td><span class="tag p0">Must Have</span></td>
+            <td>High</td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>BRD Lifecycle States + Open Items Gate</td>
+            <td><span class="tag p0">Must Have</span></td>
+            <td>High</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Inbox Triage Enforcement</td>
+            <td><span class="tag p1">Should Have</span></td>
+            <td>High</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Post-Workshop Follow-Up Workflow</td>
+            <td><span class="tag p1">Should Have</span></td>
+            <td>Medium</td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Private Vault Activation</td>
+            <td><span class="tag p1">Should Have</span></td>
+            <td>Medium</td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Agent Selector Clarity</td>
+            <td><span class="tag p2">Could Have</span></td>
+            <td>Medium</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Cross-Project Dashboards</td>
+            <td><span class="tag p3">Won't Have</span></td>
+            <td>Low</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Auto-Send MoM</td>
+            <td><span class="tag p3">Won't Have</span></td>
+            <td>Low</td>
+            <td>Medium</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Impact vs. Effort</h3>
+    <svg viewBox="0 0 640 510" style="width:100%;max-width:640px;display:block;margin:20px 0;">
+
+      <!-- Quadrant backgrounds -->
+      <rect x="60" y="20" width="275" height="180" fill="#f0fdf4"/>
+      <rect x="335" y="20" width="275" height="180" fill="#eff6ff"/>
+      <rect x="60" y="200" width="275" height="180" fill="#f9fafb"/>
+      <rect x="335" y="200" width="275" height="180" fill="#fef2f2"/>
+
+      <!-- Border -->
+      <rect x="60" y="20" width="550" height="360" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+
+      <!-- Dividing lines -->
+      <line x1="335" y1="20" x2="335" y2="380" stroke="#d1d5db" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="200" x2="610" y2="200" stroke="#d1d5db" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <!-- Quadrant labels -->
+      <text x="197" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d" font-family="Inter,sans-serif" letter-spacing="0.08em">QUICK WIN</text>
+      <text x="473" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8" font-family="Inter,sans-serif" letter-spacing="0.08em">STRATEGIC</text>
+      <text x="197" y="368" text-anchor="middle" font-size="10" font-weight="600" fill="#6b7280" font-family="Inter,sans-serif" letter-spacing="0.08em">CONSIDER</text>
+      <text x="473" y="368" text-anchor="middle" font-size="10" font-weight="600" fill="#b91c1c" font-family="Inter,sans-serif" letter-spacing="0.08em">AVOID</text>
+
+      <!-- Y-axis -->
+      <text x="18" y="200" text-anchor="middle" font-size="11" fill="#6b7280" font-family="Inter,sans-serif" font-weight="500" transform="rotate(-90,18,200)">Impact</text>
+      <text x="52" y="26" text-anchor="end" font-size="9" fill="#9ca3af" font-family="Inter,sans-serif">High</text>
+      <text x="52" y="379" text-anchor="end" font-size="9" fill="#9ca3af" font-family="Inter,sans-serif">Low</text>
+
+      <!-- X-axis -->
+      <text x="335" y="400" text-anchor="middle" font-size="11" fill="#6b7280" font-family="Inter,sans-serif" font-weight="500">Effort</text>
+      <text x="63" y="395" text-anchor="start" font-size="9" fill="#9ca3af" font-family="Inter,sans-serif">Low</text>
+      <text x="607" y="395" text-anchor="end" font-size="9" fill="#9ca3af" font-family="Inter,sans-serif">High</text>
+
+      <!-- 1: Guided First-Run (143, 56) -->
+      <circle cx="143" cy="56" r="14" fill="#111827"/>
+      <text x="143" y="61" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">1</text>
+
+      <!-- 2: BRD Lifecycle (346, 74) -->
+      <circle cx="346" cy="74" r="14" fill="#111827"/>
+      <text x="346" y="79" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">2</text>
+
+      <!-- 3: Inbox Triage (418, 110) -->
+      <circle cx="418" cy="110" r="14" fill="#111827"/>
+      <text x="418" y="115" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">3</text>
+
+      <!-- 4: Post-Workshop (214, 171) -->
+      <circle cx="214" cy="171" r="14" fill="#374151"/>
+      <text x="214" y="176" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">4</text>
+
+      <!-- 5: Private Vault (115, 189) -->
+      <circle cx="115" cy="189" r="14" fill="#374151"/>
+      <text x="115" y="194" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">5</text>
+
+      <!-- 6: Agent Selector (324, 229) -->
+      <circle cx="324" cy="229" r="14" fill="#374151"/>
+      <text x="324" y="234" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">6</text>
+
+      <!-- 7: Cross-Project Dashboards (511, 279) -->
+      <circle cx="511" cy="279" r="14" fill="#9ca3af"/>
+      <text x="511" y="284" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">7</text>
+
+      <!-- 8: Auto-Send MoM (401, 315) -->
+      <circle cx="401" cy="315" r="14" fill="#9ca3af"/>
+      <text x="401" y="320" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">8</text>
+
+      <!-- Legend -->
+      <text x="60" y="430" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">1</tspan><tspan dx="5">Guided First-Run Experience</tspan></text>
+      <text x="60" y="447" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">2</tspan><tspan dx="5">BRD Lifecycle States + Open Items Gate</tspan></text>
+      <text x="60" y="464" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">3</tspan><tspan dx="5">Inbox Triage Enforcement</tspan></text>
+      <text x="60" y="481" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">4</tspan><tspan dx="5">Post-Workshop Follow-Up Workflow</tspan></text>
+      <text x="340" y="430" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">5</tspan><tspan dx="5">Private Vault Activation</tspan></text>
+      <text x="340" y="447" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">6</tspan><tspan dx="5">Agent Selector Clarity</tspan></text>
+      <text x="340" y="464" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">7</tspan><tspan dx="5">Cross-Project Dashboards</tspan></text>
+      <text x="340" y="481" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">8</tspan><tspan dx="5">Auto-Send MoM</tspan></text>
+    </svg>
+
+    <h3>Priority Stack</h3>
+
+    <div class="callout">
+      <strong>Priority 1: Guided First-Run Experience</strong><br/>
+      The entry point problem affects every new user without exception. It requires no new functionality and delivers the fastest measurable adoption impact. This is where the COO's ask for fastest adoption improvement without shallow fixes starts. A better-guided entry changes behavior permanently, not cosmetically.
+    </div>
+
+    <div class="callout">
+      <strong>Priority 2: BRD Lifecycle States + Open Items Export Gate</strong><br/>
+      Output trust is the currency of a design-partner relationship. The export incident already happened. If it happens again, the product's credibility with the partner is at risk. This item has clear bounded scope and is exactly the kind of well-defined problem the CTO needs before engineering takes anything on.
+    </div>
+
+    <div class="callout">
+      <strong>Priority 3: Inbox Triage Enforcement</strong><br/>
+      Output quality is directly upstream of input quality. Unrouted artifacts produce untrustworthy outputs. This is a natural follow-on to Priority 2 and reinforces the same trust objective.
+    </div>
+
+    <h3>What We Are Not Prioritizing Yet</h3>
+    <ul>
+      <li><strong>Cross-project dashboards.</strong> Adding visibility tooling before the core workflow is reliable is building on an unstable foundation. This belongs on the roadmap, not the current sprint.</li>
+      <li><strong>Auto-send MoM.</strong> This is not just low priority; it directly conflicts with Peaktify's human-led governance model. The answer is not "no forever" but "not until there is a principled model for which outputs can bypass approval and under what conditions."</li>
+      <li><strong>Agent selector clarity.</strong> Real friction, but sequencing matters. Users who have not completed their first project end-to-end will not benefit from this yet.</li>
+    </ul>
+
+    <h3>Balancing Competing Pressures</h3>
+    <p>The COO wants adoption speed without shallow fixes. The CTO wants engineering clarity. The partner wants output trust. These are sequential, not competing. Adoption first, then trust, then engineering precision. Running all three in parallel produces half-finished work across all fronts.</p>
+
+    <h3>Notes</h3>
+    <ul>
+      <li>Effort ratings in the framework above are indicative. Precise estimation should be validated with the engineering team before any item is scoped for sprint planning.</li>
+      <li>Impact ratings should be data-driven wherever possible. As usage data, session observations, and feedback are collected in the first 30 days, these ratings should be revisited to ensure prioritization reflects real evidence rather than assumptions.</li>
+    </ul>
+  </section>
+
+  <!-- Part 4 -->
+  <section class="section" id="part4">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Backlog Proposal</h2>
+    </div>
+
+    <div class="table-wrap-wide">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Problem It Solves</th>
+            <th>User / Stakeholder</th>
+            <th>Why It Matters Now</th>
+            <th>Priority</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>As a new user, I want a clear recommended starting path so that I can begin contributing without needing external guidance</td>
+            <td>No recommended starting path; users self-route inconsistently</td>
+            <td>All new users; delivery leads</td>
+            <td>Affects every new user; fastest adoption lever with no new functionality required</td>
+            <td><span class="tag p0">Must Have</span></td>
+            <td>Adoption Enablement</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>As a document author, I want to see the current state of a BRD so that I know when it is ready to share externally</td>
+            <td>No visible distinction between draft, review-ready, and final outputs</td>
+            <td>Document authors; reviewers; external stakeholders</td>
+            <td>A trust failure has already occurred; prevents recurrence and sets a clear standard for output readiness</td>
+            <td><span class="tag p0">Must Have</span></td>
+            <td>Product Improvement</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>As a project lead, I want to be prevented from exporting a BRD with unresolved Open Items so that incomplete documents are never shared with external stakeholders</td>
+            <td>No guardrail preventing premature export of incomplete BRDs</td>
+            <td>Document authors; project leads; external stakeholders</td>
+            <td>Direct response to an incident that damaged output confidence with the design partner</td>
+            <td><span class="tag p0">Must Have</span></td>
+            <td>Product Improvement</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>As a project lead, I want unrouted artifacts flagged for triage so that no important input is missed before outputs are generated</td>
+            <td>Artifacts sit unrouted in Inbox; downstream output quality degrades</td>
+            <td>Project leads; all artifact contributors</td>
+            <td>Directly upstream of output quality; unresolved routing breaks the trust chain</td>
+            <td><span class="tag p1">Should Have</span></td>
+            <td>Workflow / Process</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>As a delivery lead, I want a structured post-workshop follow-up workflow so that MoM outputs are reviewed and distributed promptly</td>
+            <td>MoM review happens late; users lose confidence in speed-to-value</td>
+            <td>Workshop facilitators; delivery leads</td>
+            <td>Speed-to-value is a core adoption driver; late MoM erodes the platform's primary promise</td>
+            <td><span class="tag p1">Should Have</span></td>
+            <td>Workflow / Process</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>As a user, I want my team's context loaded into Private Vault so that AI outputs are grounded in our specific project knowledge</td>
+            <td>Vault not used consistently; AI outputs lack partner-specific grounding</td>
+            <td>All users; output reviewers</td>
+            <td>Output quality gap compounds over time as more outputs are produced without proper context</td>
+            <td><span class="tag p1">Should Have</span></td>
+            <td>Adoption Enablement</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>As a project lead, I want clear guidance on when to use the work-cycle agent versus P so that I use the right tool for each task</td>
+            <td>Users unsure when to use work-cycle agent vs. P in Command Center</td>
+            <td>Experienced users; project leads</td>
+            <td>Real friction, but secondary to entry point problem; address after first-run is resolved</td>
+            <td><span class="tag p2">Could Have</span></td>
+            <td>Product Improvement</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>As a COO, I want a summary view across all active projects so that I can track delivery progress without entering each project individually</td>
+            <td>No portfolio-level visibility across active projects</td>
+            <td>COO; senior delivery leads</td>
+            <td>Not blocking current adoption; valuable once core workflow is stable and trusted</td>
+            <td><span class="tag p3">Won't Have</span></td>
+            <td>Future Roadmap</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>As a workshop facilitator, I want MoM outputs distributed to stakeholders faster so that confidence in delivery speed is maintained</td>
+            <td>Delay between workshop capture and MoM distribution reduces stakeholder confidence in speed-to-value</td>
+            <td>Workshop facilitators; delivery leads; external stakeholders</td>
+            <td>The underlying need is valid but auto-sending without human approval conflicts with Peaktify's governance model. The right solution is a faster human-review workflow, not removing the review step</td>
+            <td><span class="tag p3">Won't Have</span></td>
+            <td>Governance Risk</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Part 5 -->
+  <section class="section" id="part5">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>Sample PRD: Guided First-Run Experience</h2>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-label">Problem Statement</div>
+      <div>New users entering Peaktify encounter multiple valid starting surfaces: Command Center, Projects, and Work Cycles, with no recommended path for first-time use. The platform's value is not immediately legible. Users begin in different places, form inconsistent mental models, and require informal guidance or elapsed time before understanding the intended workflow. One delivery lead described this directly: "The value becomes clearer after a while, but the first 15 minutes are not obvious enough." Every new user onboarded to the design partner team encounters the same gap.</div>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-label">User Context</div>
+      <div>Delivery professionals including leads, BAs, and consultants joining a Peaktify workspace for the first time. They have no prior training and are typically joining mid-engagement to contribute to a live project. They need to understand what to do first, where their work lives, and how their actions connect to team outputs within minutes, not sessions.</div>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-label">Desired Outcome</div>
+      <div>A new user can successfully complete their first meaningful action within 10 minutes of first login, without requiring external guidance.</div>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-label">Scope</div>
+      <div>
+        <ul>
+          <li>Guided entry state shown on first login</li>
+          <li>Recommended starting action based on whether the user is joining an existing project or starting a new one</li>
+          <li>Contextual explanation of the relationship between Projects, Work Cycles, and Command Center</li>
+          <li>Dismissible and non-recurring after the first action is completed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-label">Out of Scope</div>
+      <div>
+        <ul>
+          <li>Full product tour or feature walkthrough</li>
+          <li>In-app help center or documentation</li>
+          <li>Role-based access or permission configuration</li>
+          <li>Automated onboarding emails</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-label">Proposed Approach</div>
+      <div>On first login, present a focused entry prompt with two paths: join an existing project or start a new one. Each path provides a one-sentence description of what happens next. After the first action is completed, surface a brief note explaining how the three main surfaces relate to each other. The experience should be lightweight, not a modal tour.</div>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-label">Acceptance Criteria</div>
+      <div>
+        <ul>
+          <li>First-time user sees the guided entry state on first login with no setup required</li>
+          <li>Entry state presents a recommended starting action with a clear description</li>
+          <li>State does not re-appear after the user completes their first meaningful action</li>
+          <li>In the next design-partner onboarding session, at least two new users complete a first action within 10 minutes without facilitation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-label">Success Metrics</div>
+      <div>
+        <p>The following metrics define how success will be measured after the feature ships, not just whether it was built correctly.</p>
+        <ul>
+          <li><strong>Time-to-first-action (quantitative).</strong> Average time from first login to completing a first meaningful action, measured via session analytics or structured observation during the next partner onboarding session. Target: under 10 minutes. Baseline to be established in Week 1 of the 30-day plan by observing current new-user sessions before the feature ships.</li>
+          <li><strong>Post-onboarding interview (qualitative).</strong> Three questions asked to new users after their first session: Did you know where to start? Did you need help from anyone? What, if anything, was still unclear? Conducted within 24 hours of the onboarding session. Target: majority of respondents answer yes to the first question and no to the second without any coaching.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-label">Dependencies and Assumptions</div>
+      <div>
+        <ul>
+          <li>Platform can detect first-time vs. returning users</li>
+          <li>Platform can detect whether a first meaningful action has been completed</li>
+          <li>No backend changes required; frontend layer only</li>
+          <li>Design partner will onboard new users within the next 30 days</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-row">
+      <div class="spec-label">Open Questions and Risks</div>
+      <div>
+        <ul>
+          <li>What counts as a "first meaningful action": joining a project, or creating a work cycle?</li>
+          <li>Should the entry state be role-aware? If roles are not currently modeled in the platform, this is out of scope for v1</li>
+          <li>Risk: a lightweight prompt may not be sufficient for users unfamiliar with implementation workflows. Validate in the next onboarding session.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Prototype</h3>
+    <p>The following is a lo-fi prototype of the proposed guided first-run experience. It illustrates the two-path entry state a new user would see on first login.</p>
+
+    <!-- Prototype shell -->
+    <div style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;margin:20px 0;font-family:'Inter',sans-serif;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+
+      <!-- Browser chrome -->
+      <div style="background:#f9fafb;padding:9px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #e5e7eb;">
+        <div style="width:10px;height:10px;border-radius:50%;background:#e5e7eb;"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#e5e7eb;"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#e5e7eb;"></div>
+        <div style="flex:1;background:#ffffff;border:1px solid #e5e7eb;border-radius:4px;padding:3px 10px;font-size:11px;color:#9ca3af;margin-left:8px;">app.peaktify.ai</div>
+      </div>
+
+      <!-- App shell -->
+      <div style="display:flex;flex-direction:column;min-height:500px;background:#ffffff;">
+
+        <!-- Top bar -->
+        <div style="display:flex;align-items:center;padding:0 20px;height:48px;border-bottom:1px solid #f3f4f6;background:#ffffff;gap:12px;">
+          <!-- Logo -->
+          <div style="display:flex;align-items:center;gap:6px;min-width:140px;">
+            <div style="width:20px;height:20px;background:#2563eb;border-radius:4px;"></div>
+            <span style="font-size:13px;font-weight:600;color:#111827;">peaktify</span>
+          </div>
+          <!-- Search -->
+          <div style="flex:1;max-width:340px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;padding:5px 10px;font-size:12px;color:#9ca3af;display:flex;align-items:center;gap:6px;">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="5" cy="5" r="3.5" stroke="#9ca3af" stroke-width="1.2"/><path d="M8 8l2 2" stroke="#9ca3af" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Search projects, work cycles, artifacts...
+          </div>
+          <!-- Right side -->
+          <div style="margin-left:auto;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:12px;color:#9ca3af;">Wednesday, March 4, 2026</span>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:#dbeafe;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#2563eb;">N</div>
+              <span style="font-size:12px;color:#374151;font-weight:500;">New User</span>
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke="#9ca3af" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div style="display:flex;flex:1;">
+
+          <!-- Sidebar -->
+          <div style="width:160px;background:#ffffff;border-right:1px solid #f3f4f6;padding:12px 0;flex-shrink:0;display:flex;flex-direction:column;">
+            <!-- Active item -->
+            <div style="padding:8px 14px;font-size:12px;color:#2563eb;font-weight:500;display:flex;align-items:center;gap:8px;background:#eff6ff;border-left:2px solid #2563eb;margin-bottom:2px;">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 1h4.5v4.5H1zM7.5 1H12v4.5H7.5zM1 7.5h4.5V12H1zM7.5 7.5H12V12H7.5z" stroke="#2563eb" stroke-width="1.1" stroke-linejoin="round"/></svg>
+              Home
+            </div>
+            <div style="padding:8px 14px;font-size:12px;color:#6b7280;display:flex;align-items:center;gap:8px;margin-bottom:2px;border-left:2px solid transparent;">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="11" height="11" rx="1.5" stroke="#9ca3af" stroke-width="1.1"/><path d="M4 5h5M4 7.5h3" stroke="#9ca3af" stroke-width="1.1" stroke-linecap="round"/></svg>
+              Projects
+            </div>
+            <div style="padding:8px 14px;font-size:12px;color:#6b7280;display:flex;align-items:center;gap:8px;margin-bottom:2px;border-left:2px solid transparent;">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="#9ca3af" stroke-width="1.1"/><path d="M6.5 3.5v3l2 1.2" stroke="#9ca3af" stroke-width="1.1" stroke-linecap="round"/></svg>
+              Work Cycles
+            </div>
+            <div style="padding:8px 14px;font-size:12px;color:#6b7280;display:flex;align-items:center;gap:8px;margin-bottom:2px;border-left:2px solid transparent;">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 2.5h10v7h-10z" stroke="#9ca3af" stroke-width="1.1" stroke-linejoin="round"/><path d="M4.5 11.5h4" stroke="#9ca3af" stroke-width="1.1" stroke-linecap="round"/></svg>
+              Inbox
+            </div>
+            <div style="padding:8px 14px;font-size:12px;color:#6b7280;display:flex;align-items:center;gap:8px;margin-bottom:2px;border-left:2px solid transparent;">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1" y="2" width="11" height="9" rx="1" stroke="#9ca3af" stroke-width="1.1"/><path d="M1 5h11M4 2v3" stroke="#9ca3af" stroke-width="1.1" stroke-linecap="round"/></svg>
+              Calendar
+            </div>
+            <div style="padding:8px 14px;font-size:12px;color:#6b7280;display:flex;align-items:center;gap:8px;border-left:2px solid transparent;">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="4.5" r="2" stroke="#9ca3af" stroke-width="1.1"/><path d="M2 11c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#9ca3af" stroke-width="1.1" stroke-linecap="round"/></svg>
+              Members
+            </div>
+            <div style="padding:8px 14px;font-size:12px;color:#6b7280;display:flex;align-items:center;gap:8px;border-left:2px solid transparent;">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="2.5" stroke="#9ca3af" stroke-width="1.1"/><circle cx="6.5" cy="6.5" r="5" stroke="#9ca3af" stroke-width="1.1"/></svg>
+              Agents
+            </div>
+            <div style="padding:8px 14px;font-size:12px;color:#6b7280;display:flex;align-items:center;gap:8px;border-left:2px solid transparent;">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="2.5" width="10" height="8" rx="1" stroke="#9ca3af" stroke-width="1.1"/><path d="M4.5 2.5v-1M8.5 2.5v-1" stroke="#9ca3af" stroke-width="1.1" stroke-linecap="round"/></svg>
+              Private Vault
+            </div>
+          </div>
+
+          <!-- Main content -->
+          <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:40px 32px;background:#ffffff;">
+            <div style="max-width:480px;width:100%;text-align:center;">
+
+              <!-- Avatar -->
+              <div style="width:56px;height:56px;border-radius:50%;background:#dbeafe;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;border:2px solid #bfdbfe;">
+                <span style="font-size:20px;font-weight:600;color:#2563eb;">N</span>
+              </div>
+
+              <!-- Greeting -->
+              <h2 style="font-size:20px;font-weight:600;color:#111827;margin-bottom:6px;letter-spacing:-0.01em;">Good afternoon, New User</h2>
+              <p style="font-size:13px;color:#6b7280;margin-bottom:32px;">Where would you like to start today?</p>
+
+              <!-- Two paths -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;text-align:left;">
+
+                <!-- Path A -->
+                <div style="border:1.5px solid #2563eb;border-radius:8px;padding:18px;cursor:pointer;background:#ffffff;box-shadow:0 1px 6px rgba(37,99,235,0.08);">
+                  <div style="width:30px;height:30px;background:#eff6ff;border-radius:6px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 3h10M2 7h8M2 11h5" stroke="#2563eb" stroke-width="1.3" stroke-linecap="round"/></svg>
+                  </div>
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;margin-bottom:5px;">Join a project</div>
+                  <div style="font-size:11.5px;color:#6b7280;line-height:1.5;margin-bottom:14px;">Your team has a workspace ready. Jump in and start contributing.</div>
+                  <div style="display:inline-block;background:#2563eb;color:#ffffff;font-size:11px;font-weight:600;padding:5px 12px;border-radius:5px;">Get started</div>
+                </div>
+
+                <!-- Path B -->
+                <div style="border:1px solid #e5e7eb;border-radius:8px;padding:18px;cursor:pointer;background:#ffffff;">
+                  <div style="width:30px;height:30px;background:#f9fafb;border-radius:6px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="#6b7280" stroke-width="1.3" stroke-linecap="round"/></svg>
+                  </div>
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;margin-bottom:5px;">Start a new project</div>
+                  <div style="font-size:11.5px;color:#6b7280;line-height:1.5;margin-bottom:14px;">Set up a delivery workspace and begin the discovery phase.</div>
+                  <div style="display:inline-block;border:1px solid #d1d5db;color:#374151;font-size:11px;font-weight:600;padding:5px 12px;border-radius:5px;">Get started</div>
+                </div>
+              </div>
+
+              <!-- Context note -->
+              <div style="background:#f9fafb;border-radius:6px;padding:12px 16px;border:1px solid #e5e7eb;text-align:left;">
+                <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#9ca3af;margin-bottom:7px;">How Peaktify is structured</div>
+                <div style="font-size:12px;color:#6b7280;line-height:1.7;">
+                  <strong style="color:#374151;">Projects</strong> hold your delivery work and stakeholders.
+                  <strong style="color:#374151;">Work Cycles</strong> structure discovery phases within a project.
+                  <strong style="color:#374151;">Command Center</strong> gives you a cross-project view.
+                </div>
+              </div>
+
+              <!-- Skip -->
+              <div style="margin-top:16px;">
+                <span style="font-size:12px;color:#9ca3af;cursor:pointer;text-decoration:underline;text-underline-offset:2px;">Skip for now</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End prototype -->
+
+  </section>
+
+  <!-- Part 6 -->
+  <section class="section" id="part6">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2>30-Day Adoption &amp; Field Execution Plan</h2>
+    </div>
+
+    <p>This plan is structured around a "listen, decide, and lead" posture. The role operates as both Product and Adoption Manager and de facto Product Lead for this partner engagement. That means forming independent points of view, bringing structured proposals rather than raw observations, and owning decisions rather than waiting for direction.</p>
+
+    <div class="week-grid">
+      <div class="week-card">
+        <div class="week-label">Week 1: Listen, Map, and Form a Point of View</div>
+        <ul>
+          <li>Shadow 3-5 active users across different roles in live sessions. Observe without intervening.</li>
+          <li>Audit the workspace: Inbox backlog, artifact routing state, Open Items across active BRDs.</li>
+          <li>Conduct structured 30-minute interviews with each design-partner stakeholder. Capture stated needs and underlying goals separately.</li>
+          <li>Align with the COO on decision rights and how trade-offs will be resolved going forward.</li>
+          <li>No changes shipped. Week 1 ends with a clear point of view, not just a list of observations.</li>
+        </ul>
+      </div>
+
+      <div class="week-card">
+        <div class="week-label">Week 2: Propose, Align, and Ship</div>
+        <ul>
+          <li>Bring a structured prioritization proposal to the COO based on Week 1 findings. Own the recommendation; do not present a list of options.</li>
+          <li>Deliver the P0 PRD to engineering with full acceptance criteria. Set expectations on timeline.</li>
+          <li>Run a structured feedback session with the partner team using a prepared template, not open discussion.</li>
+          <li>Establish a recurring weekly feedback loop: one 30-minute rotating user session, one structured form.</li>
+          <li>Begin shaping partner behavior: guide users toward the recommended workflow, set expectations on what is and is not on the roadmap.</li>
+        </ul>
+      </div>
+
+      <div class="week-card">
+        <div class="week-label">Week 3: Lead PRD Delivery and Engineering Alignment</div>
+        <ul>
+          <li>Deliver P1 PRDs to engineering: BRD lifecycle states, Open Items gate, Inbox triage. Full spec, not bullet points.</li>
+          <li>Lead the PRD review session with the CTO. Walk through each item, surface trade-offs, and make scope calls. Do not just present and wait for feedback.</li>
+          <li>Push back on vague engineering estimates. Hold the line on scope.</li>
+          <li>Begin Private Vault activation with the partner: run a working session to load project-specific context.</li>
+          <li>Synthesize Week 1 and 2 observations into a structured product feedback report for the Peaktify team.</li>
+        </ul>
+      </div>
+
+      <div class="week-card">
+        <div class="week-label">Week 4: Measure, Retrospect, and Set Direction</div>
+        <ul>
+          <li>Review success signals against the baselines established in Week 1.</li>
+          <li>Run a retrospective with the partner team: what is working, what changed, what remains unresolved.</li>
+          <li>Deliver a 30-day summary to the COO and CTO: decisions made, rationale documented, items shipped, open questions.</li>
+          <li>Propose the next 60-day product and adoption plan with a clear recommendation, not a list of options.</li>
+          <li>Flag any high-priority items that emerged mid-month and require immediate re-prioritization.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Success Signals</h3>
+    <p>Baselines for all signals are established during Week 1, before any changes ship. Week 1 is deliberately a no-changes week precisely to generate clean before-data. Without a baseline, "improvement" is not measurable.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Signal</th>
+            <th>How Baseline is Established</th>
+            <th>How to Measure</th>
+            <th>Target by Day 30</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Time-to-first-action for new users</td>
+            <td>Observe 1-2 new user onboarding sessions in Week 1 before feature ships; record time elapsed and friction points</td>
+            <td>Structured observation during next partner onboarding session; session analytics if available</td>
+            <td>Under 10 minutes without facilitation</td>
+          </tr>
+          <tr>
+            <td>BRD export quality</td>
+            <td>No baseline needed; any export with unresolved Open Items is an incident regardless of history</td>
+            <td>Count of BRDs exported with unresolved Open Items</td>
+            <td>Zero incidents</td>
+          </tr>
+          <tr>
+            <td>Inbox triage lag</td>
+            <td>Manual audit of Inbox at start of Week 1: count unrouted items, note timestamps, calculate average time sitting unactioned</td>
+            <td>Repeat the same audit at end of Week 4; compare average lag</td>
+            <td>Measurable reduction vs. Week 1 snapshot</td>
+          </tr>
+          <tr>
+            <td>Adoption breadth</td>
+            <td>Request list of active users from team lead at start of Week 1; record which surfaces each user has engaged with</td>
+            <td>Track week over week from Week 1 list; flag any drop-off</td>
+            <td>Stable or growing; no regression</td>
+          </tr>
+          <tr>
+            <td>Stakeholder confidence</td>
+            <td>Run a 3-question survey (1-5 scale) at end of Week 1 before any changes ship</td>
+            <td>Repeat the same survey at end of Week 4; compare scores</td>
+            <td>Positive directional movement vs. Week 1 score</td>
+          </tr>
+          <tr>
+            <td>Engineering requirement quality</td>
+            <td>Starts at zero; any rejection is a regression from day one</td>
+            <td>Track PRD rejections for vague framing or loose scope</td>
+            <td>Zero rejections</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Part 7 -->
+  <section class="section" id="part7">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2>Questions, Assumptions &amp; Trade-offs</h2>
+    </div>
+
+    <h3>Top Questions Before Finalizing Recommendations</h3>
+    <ol>
+      <li><strong>What does the current first-login experience actually look like?</strong> Is there any existing guidance, or is it a fully blank state? The answer changes the scope of the P0 item significantly.</li>
+      <li><strong>Who owns Inbox triage today?</strong> Is it assigned to a specific role, or is it informal and shared? Without understanding the current ownership model, it is hard to determine whether the fix is a process change or a product change.</li>
+      <li><strong>Is there an existing BRD approval workflow, or is the approval step informal?</strong> If approval is already modeled in the platform, adding lifecycle states is a UI change. If it is not, it is a product design problem requiring more scope.</li>
+      <li><strong>How many active users does the design partner currently have, and what are their roles?</strong> The onboarding problem looks different at 3 users vs. 15, and across a homogeneous vs. mixed-role team.</li>
+      <li><strong>What specifically has caused engineering to push back on recent items?</strong> Understanding the CTO's friction points calibrates how tightly PRDs need to be scoped and whether there is a missing review step before items are assigned.</li>
+    </ol>
+
+    <h3>Stated Assumptions</h3>
+    <ul>
+      <li>The design partner has users across at least two distinct roles, meaning the onboarding problem manifests differently depending on entry context.</li>
+      <li>Peaktify can ship UI-level changes within a 2-week sprint cycle. If cycles are longer, the P0 item may need to be phased more aggressively.</li>
+      <li>The human-approval model is a core architectural constraint, not a feature that can be toggled off. Recommendations that would require bypassing it are out of scope regardless of stakeholder requests.</li>
+      <li>This design partner is the primary source of validation signal right now. There are no other active customers providing conflicting feedback that would change prioritization.</li>
+      <li>The COO has final call on what gets resourced, and the CTO has final call on engineering scope and sequencing. Both relationships require proactive management, not passive reporting.</li>
+    </ul>
+
+    <h3>Key Trade-offs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Trade-off</th>
+            <th>Position</th>
+            <th>Reasoning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Quick adoption wins vs. risk of shallow fixes</td>
+            <td>Only pursue wins that change behavior permanently</td>
+            <td>A guided entry point is not a tooltip; it changes the mental model. The Open Items gate is not a warning; it enforces a constraint. Neither is cosmetic.</td>
+          </tr>
+          <tr>
+            <td>Governance model vs. stakeholder demand for automation</td>
+            <td>Protect the approval layer even under pressure</td>
+            <td>Governance is Peaktify's primary differentiator from generic AI tools. Eroding it to satisfy one stakeholder's request creates long-term product drift that is hard to reverse.</td>
+          </tr>
+          <tr>
+            <td>Depth on fewer items vs. breadth across many</td>
+            <td>Three well-executed items over eight partial ones</td>
+            <td>At the design-partner stage, a few improvements with measurable outcomes build more trust than many half-finished ones. The backlog is a prioritized list, not a sprint plan.</td>
+          </tr>
+          <tr>
+            <td>Stakeholder-driven roadmap vs. usage-driven roadmap</td>
+            <td>Observed behavior over stated requests</td>
+            <td>Stakeholders articulate wants; observed usage reveals needs. The most important items in this backlog were not explicitly requested; they were inferred from behavioral patterns.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span>Peaktify: Product &amp; Adoption Manager Case Study</span>
+    <span>April 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
