@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belal Bahr: Almentor Product Manager Discovery Skills Assessment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #111827;
+      --accent-light: #f3f4f6;
+      --max-w: 760px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrapper {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Cover */
+    .cover {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+    .cover-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .cover h1 {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .cover-meta {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .cover-meta span + span::before { content: '\B7'; margin-right: 24px; color: var(--border); }
+
+    /* TOC */
+    .toc {
+      background: var(--accent-light);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-bottom: 64px;
+    }
+    .toc-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .toc ol {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      counter-reset: toc;
+    }
+    .toc li { counter-increment: toc; }
+    .toc a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13.5px;
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      padding: 2px 0;
+    }
+    .toc a:hover { color: var(--muted); }
+    .toc a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      min-width: 22px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 72px;
+      padding-top: 8px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 26px;
+    }
+    .section h2 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    /* Typography */
+    p { margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin: 28px 0 10px;
+    }
+    h3:first-child { margin-top: 0; }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+    ul { list-style: disc; }
+    ol { list-style: decimal; }
+    li { margin-bottom: 6px; }
+    li:last-child { margin-bottom: 0; }
+
+    strong { font-weight: 600; }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; margin: 20px 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--accent-light); }
+
+    /* Callout */
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      background: var(--accent-light);
+      border-radius: 0 4px 4px 0;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    /* Stat cards */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .stat-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 18px;
+    }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .stat-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .stat-card.negative .stat-value { color: #b91c1c; }
+    .stat-card.warning .stat-value { color: #92400e; }
+    .stat-card.positive .stat-value { color: #15803d; }
+
+    /* Tag */
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background: var(--accent-light);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .tag.high { background: #fef2f2; color: #b91c1c; }
+    .tag.medium { background: #fffbeb; color: #92400e; }
+    .tag.low { background: #f0fdf4; color: #15803d; }
+    .tag.p0 { background: #111827; color: #fff; }
+    .tag.p1 { background: #374151; color: #fff; }
+    .tag.p2 { background: var(--accent-light); color: var(--text); }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 48px;
+      margin-top: 40px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media print {
+      .toc { display: none; }
+      .section { page-break-inside: avoid; }
+      body { font-size: 13px; }
+      .cover { padding: 40px 0 32px; }
+    }
+
+    @media (max-width: 600px) {
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-label">Product Manager Discovery Skills Assessment</div>
+    <h1>Senior Product Manager<br/>Case Study: Almentor</h1>
+    <div class="cover-meta">
+      <span><strong>Belal Bahr</strong></span>
+      <span>Role: Senior Product Manager</span>
+      <span>April 2026</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#part1">Situation Analysis</a></li>
+      <li><a href="#part2">Problem Identification</a></li>
+      <li><a href="#part3">Proposed Solutions</a></li>
+      <li><a href="#part4">Prioritization</a></li>
+      <li><a href="#part5">Success Metrics</a></li>
+    </ol>
+  </nav>
+
+  <!-- Part 1 -->
+  <section class="section" id="part1">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>Situation Analysis</h2>
+    </div>
+
+    <h3>The Numbers</h3>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">CAC</div>
+        <div class="stat-value">$20</div>
+        <div class="stat-note">Cost to acquire one user</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">ARPU</div>
+        <div class="stat-value">$10</div>
+        <div class="stat-note">Revenue per user per month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">User Lifetime</div>
+        <div class="stat-value">1.7 mo</div>
+        <div class="stat-note">Average before churn</div>
+      </div>
+      <div class="stat-card negative">
+        <div class="stat-label">LTV</div>
+        <div class="stat-value">$17</div>
+        <div class="stat-note">ARPU x User Lifetime</div>
+      </div>
+      <div class="stat-card negative">
+        <div class="stat-label">LTV:CAC Ratio</div>
+        <div class="stat-value">0.85x</div>
+        <div class="stat-note">Healthy benchmark is 3x+</div>
+      </div>
+      <div class="stat-card warning">
+        <div class="stat-label">Payback Period</div>
+        <div class="stat-value">2 mo</div>
+        <div class="stat-note">Exceeds user lifetime by 0.3 mo</div>
+      </div>
+    </div>
+
+    <h3>What the Data Reveals</h3>
+    <p>The business is in a negative unit economics loop. With an LTV of $17 against a CAC of $20, the product loses $3 on every customer acquired before accounting for any operating costs. The payback period of 2 months exceeds the average user lifetime of 1.7 months, meaning acquisition costs are never recovered.</p>
+    <p>The 1.7-month user lifetime translates to a monthly churn rate of approximately 59%. This is not a retention optimization problem. It is a signal that users are not finding sufficient value to justify a second billing cycle. The product is acquiring users it cannot keep.</p>
+
+    <h3>Root Cause Hierarchy</h3>
+    <p>The three levers available are churn reduction, ARPU growth, and CAC reduction. They are not equally impactful at this stage.</p>
+    <ol>
+      <li><strong>Churn is the primary lever.</strong> Extending average lifetime from 1.7 to 3 months alone would take LTV from $17 to $30, turning the unit economics positive without touching CAC or ARPU. No other single change has this leverage.</li>
+      <li><strong>ARPU is the secondary lever.</strong> Pricing optimization, annual plans, or tiered packaging could improve revenue per user without requiring additional acquisitions. Even a modest ARPU increase from $10 to $13 at the current lifetime improves LTV to $22.</li>
+      <li><strong>CAC reduction is the tertiary lever.</strong> Lowering acquisition cost helps at the margin but is economically meaningless if users still churn before the payback period. Efficiency gains here only compound once retention is addressed.</li>
+    </ol>
+  </section>
+
+  <!-- Part 2 -->
+  <section class="section" id="part2">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Problem Identification</h2>
+    </div>
+
+    <p>The data points to four distinct but interconnected problems. Each maps to a specific lever in the unit economics model.</p>
+
+    <div class="callout">
+      <strong>Problem 1: Critical onboarding failure</strong><br/>
+      A 59% monthly churn rate means most users are leaving within their first subscription period. This points to an onboarding gap: users sign up but never reach the moment of value that justifies staying. The product is acquiring users it cannot convert into habitual engagement. Assumption: there is a discovery or value delivery failure in the first 30 days that no retention mechanic downstream can compensate for.
+    </div>
+
+    <div class="callout">
+      <strong>Problem 2: Subscription model misaligned with user behavior</strong><br/>
+      Monthly billing at $10 creates a low-friction exit every 30 days. Users can trial the product and leave with minimal financial consequence. There is no structural incentive built into the model to encourage longer commitment. The pricing architecture itself is enabling churn rather than preventing it.
+    </div>
+
+    <div class="callout">
+      <strong>Problem 3: ARPU too low relative to CAC</strong><br/>
+      At $10 per month, even achieving a healthy LTV:CAC ratio of 3x would require a user lifetime of 6 months. The current pricing is not calibrated to the cost of acquisition. Either the price point needs to move up, or the product needs to generate more revenue per user through packaging, tiers, or add-ons.
+    </div>
+
+    <div class="callout">
+      <strong>Problem 4: No self-funding growth loop</strong><br/>
+      Because acquisition costs are never recovered within the user's lifetime, the business cannot reinvest revenue into growth. Every incremental user acquired requires fresh external capital rather than being funded by the cohorts that came before. This creates a structural dependency on continued funding to maintain even flat growth, and makes scaling without solving retention economically untenable.
+    </div>
+  </section>
+
+  <!-- Part 3 -->
+  <section class="section" id="part3">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>Proposed Solutions</h2>
+    </div>
+
+    <p>Each solution maps directly to one of the four identified problems and one of the three unit economics levers: churn reduction, ARPU growth, or CAC reduction.</p>
+
+    <div class="callout">
+      <strong>Redesign onboarding around early value delivery</strong><br/>
+      Addresses Problem 1. Build a structured first-session experience designed to get users to their moment of value within the first 7 days. This includes a personalized content recommendation on signup based on stated goals, a progress prompt at day 3, and a re-engagement nudge at day 7 for users who have not returned. The goal is to maximize the number of users who complete a meaningful first session before the first billing renewal. The new flow should be validated via an A/B test against the existing experience before full rollout, using Day-30 cohort retention as the deciding metric. This directly attacks the churn lever and is the highest-impact change available.
+    </div>
+
+    <div class="callout">
+      <strong>Introduce annual and multi-month plans</strong><br/>
+      Addresses Problem 2. Offer a discounted annual plan (e.g. $80 per year vs. $120 at the monthly rate) and a 3-month plan. This mechanically extends committed user lifetime, improves LTV immediately, and reduces monthly churn opportunities by replacing short billing cycles with longer commitments. Annual plan subscribers also tend to engage more because the financial commitment creates a psychological incentive to extract value. Assumption: a meaningful portion of users who churn monthly would commit to a longer plan if the price incentive is clear.
+    </div>
+
+    <div class="callout">
+      <strong>Introduce tiered pricing</strong><br/>
+      Addresses Problem 3. Add a higher-value tier at $15 to $18 per month with premium features such as offline access, completion certificates, live sessions, or exclusive content. This lifts ARPU without requiring additional acquisition. Even a 20% mix shift to the higher tier improves blended ARPU meaningfully. A lower entry tier could also be introduced to reduce friction for price-sensitive users and widen the top of the funnel, compensating with volume and upsell potential.
+    </div>
+
+    <div class="callout">
+      <strong>Introduce a referral program</strong><br/>
+      Addresses Problem 4. Once retention improves, reduce CAC by converting existing users into an acquisition channel. A "give a friend one free month, receive one free month" mechanic directly lowers paid acquisition cost while activating the users already on the platform. Referred users also tend to have higher retention rates because they joined with social endorsement rather than through paid advertising. This compounds the benefit: lower CAC and better lifetime in one initiative.
+    </div>
+  </section>
+
+  <!-- Part 4 -->
+  <section class="section" id="part4">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Prioritization</h2>
+    </div>
+
+    <p>Each solution was evaluated using MoSCoW for decision priority and Impact vs. Effort for sequencing. Effort ratings are indicative and should be validated with the engineering and product teams before sprint planning. Impact ratings should be revisited as data is collected.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Solution</th>
+            <th>MoSCoW</th>
+            <th>Impact</th>
+            <th>Effort</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Annual and Multi-Month Plans</td>
+            <td><span class="tag p0">Must Have</span></td>
+            <td>High</td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Onboarding Redesign</td>
+            <td><span class="tag p0">Must Have</span></td>
+            <td>High</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Tiered Pricing</td>
+            <td><span class="tag p1">Should Have</span></td>
+            <td>High</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Referral Program</td>
+            <td><span class="tag p2">Could Have</span></td>
+            <td>Medium</td>
+            <td>Medium</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Impact vs. Effort</h3>
+    <svg viewBox="0 0 640 510" style="width:100%;max-width:640px;display:block;margin:20px 0;">
+
+      <!-- Quadrant backgrounds -->
+      <rect x="60" y="20" width="275" height="180" fill="#f0fdf4"/>
+      <rect x="335" y="20" width="275" height="180" fill="#eff6ff"/>
+      <rect x="60" y="200" width="275" height="180" fill="#f9fafb"/>
+      <rect x="335" y="200" width="275" height="180" fill="#fef2f2"/>
+
+      <!-- Border -->
+      <rect x="60" y="20" width="550" height="360" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+
+      <!-- Dividing lines -->
+      <line x1="335" y1="20" x2="335" y2="380" stroke="#d1d5db" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="200" x2="610" y2="200" stroke="#d1d5db" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <!-- Quadrant labels -->
+      <text x="197" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d" font-family="Inter,sans-serif" letter-spacing="0.08em">QUICK WIN</text>
+      <text x="473" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8" font-family="Inter,sans-serif" letter-spacing="0.08em">STRATEGIC</text>
+      <text x="197" y="368" text-anchor="middle" font-size="10" font-weight="600" fill="#6b7280" font-family="Inter,sans-serif" letter-spacing="0.08em">CONSIDER</text>
+      <text x="473" y="368" text-anchor="middle" font-size="10" font-weight="600" fill="#b91c1c" font-family="Inter,sans-serif" letter-spacing="0.08em">AVOID</text>
+
+      <!-- Y-axis -->
+      <text x="18" y="200" text-anchor="middle" font-size="11" fill="#6b7280" font-family="Inter,sans-serif" font-weight="500" transform="rotate(-90,18,200)">Impact</text>
+      <text x="52" y="26" text-anchor="end" font-size="9" fill="#9ca3af" font-family="Inter,sans-serif">High</text>
+      <text x="52" y="379" text-anchor="end" font-size="9" fill="#9ca3af" font-family="Inter,sans-serif">Low</text>
+
+      <!-- X-axis -->
+      <text x="335" y="400" text-anchor="middle" font-size="11" fill="#6b7280" font-family="Inter,sans-serif" font-weight="500">Effort</text>
+      <text x="63" y="395" text-anchor="start" font-size="9" fill="#9ca3af" font-family="Inter,sans-serif">Low</text>
+      <text x="607" y="395" text-anchor="end" font-size="9" fill="#9ca3af" font-family="Inter,sans-serif">High</text>
+
+      <!-- 1: Annual Plans (142, 63) - Quick Win -->
+      <circle cx="142" cy="63" r="14" fill="#111827"/>
+      <text x="142" y="68" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">1</text>
+
+      <!-- 2: Onboarding Redesign (510, 60) - Strategic, high effort -->
+      <circle cx="510" cy="60" r="14" fill="#111827"/>
+      <text x="510" y="65" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">2</text>
+
+      <!-- 3: Tiered Pricing (390, 110) - Strategic, medium effort -->
+      <circle cx="390" cy="110" r="14" fill="#374151"/>
+      <text x="390" y="115" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">3</text>
+
+      <!-- 4: Referral Program (291, 207) - Consider -->
+      <circle cx="291" cy="207" r="14" fill="#9ca3af"/>
+      <text x="291" y="212" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Inter,sans-serif">4</text>
+
+      <!-- Legend -->
+      <text x="60" y="430" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">1</tspan><tspan dx="5">Annual and Multi-Month Plans</tspan></text>
+      <text x="60" y="447" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">2</tspan><tspan dx="5">Onboarding Redesign</tspan></text>
+      <text x="340" y="430" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">3</tspan><tspan dx="5">Tiered Pricing</tspan></text>
+      <text x="340" y="447" font-size="11" fill="#374151" font-family="Inter,sans-serif"><tspan font-weight="600">4</tspan><tspan dx="5">Referral Program</tspan></text>
+    </svg>
+
+    <h3>Priority Rationale</h3>
+
+    <div class="callout">
+      <strong>Priority 1: Annual and Multi-Month Plans</strong><br/>
+      Highest impact for lowest effort. This is a pricing and packaging change, not a product build. It directly improves LTV on day one by mechanically extending committed user lifetime and reducing monthly churn opportunities. It ships immediately while the Onboarding Redesign runs in parallel development, with no reason to sequence them.
+    </div>
+
+    <div class="callout">
+      <strong>Priority 2: Onboarding Redesign</strong><br/>
+      Highest long-term impact but requires product investment. This solves the root cause (users leaving before finding value), which makes every other improvement compound. A user who reaches their moment of value in week one is exponentially more likely to stay, upsell, and refer.
+    </div>
+
+    <div class="callout">
+      <strong>Priority 3: Tiered Pricing</strong><br/>
+      Meaningful ARPU lift but should follow onboarding. There is no point building a higher-value tier for users who churn in month one. Once retention stabilizes, tiered pricing becomes the most direct path to improving blended ARPU without new acquisition.
+    </div>
+
+    <div class="callout">
+      <strong>Priority 4: Referral Program</strong><br/>
+      Only valuable once retention is healthy. Launching a referral program before solving churn wastes the mechanic: referred users will churn at the same rate as everyone else, and the acquisition benefit is lost. This becomes the right move once the first two priorities have shown results.
+    </div>
+  </section>
+
+  <!-- Part 5 -->
+  <section class="section" id="part5">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>Success Metrics</h2>
+    </div>
+    <p>Every proposed solution targets one or more of the three levers that determine unit economics health: churn, revenue per user, and acquisition cost. Success metrics are organized around a north star, the three primary levers, per-initiative signals, and guardrails that prevent optimizing one metric at the expense of the business.</p>
+
+    <h3>North Star</h3>
+    <p><strong>LTV:CAC Ratio.</strong> Currently 0.85x, meaning the business acquires users at a loss. The north star goal is to cross 1.0x (break-even) within 6 months and reach 2.0x within 12. This is reviewed monthly at the leadership level and is the single number that captures whether the full initiative stack is working.</p>
+
+    <h3>Primary Metrics</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Current State</th>
+          <th>6-Month Target</th>
+          <th>12-Month Target</th>
+          <th>Rationale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monthly Churn Rate</td>
+          <td>~59%</td>
+          <td>&lt;30%</td>
+          <td>&lt;20%</td>
+          <td>The highest-leverage lever. Dropping churn to 25% alone extends lifetime to 4 months and pushes LTV to $40, crossing LTV:CAC 2.0x without touching CAC or ARPU</td>
+        </tr>
+        <tr>
+          <td>ARPU</td>
+          <td>$10/month</td>
+          <td>$12/month</td>
+          <td>$13-15/month</td>
+          <td>Annual plan mix shift and tiered pricing upsell gradually lift the blended average. Annual plans at a discount still improve LTV by extending commitment window</td>
+        </tr>
+        <tr>
+          <td>CAC</td>
+          <td>$20</td>
+          <td>$18</td>
+          <td>$16-18</td>
+          <td>Referral channel offsets paid acquisition cost. If 15-20% of new users arrive via referral at near-zero marginal cost, blended CAC drops without cutting marketing spend</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Per-Initiative KPIs</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Initiative</th>
+          <th>Primary KPI</th>
+          <th>Target</th>
+          <th>Window</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Annual Plans</strong></td>
+          <td>Annual plan adoption rate</td>
+          <td>&gt;30% of new subscribers</td>
+          <td>90 days post-launch</td>
+        </tr>
+        <tr>
+          <td><strong>Onboarding Redesign</strong></td>
+          <td>Day-30 retention (cohort)</td>
+          <td>+15 percentage points vs. pre-launch baseline</td>
+          <td>Day 30</td>
+        </tr>
+        <tr>
+          <td><strong>Tiered Pricing</strong></td>
+          <td>Upgrade rate to premium tier</td>
+          <td>&gt;10% of active users</td>
+          <td>60 days post-launch</td>
+        </tr>
+        <tr>
+          <td><strong>Referral Program</strong></td>
+          <td>Referral-sourced acquisition share</td>
+          <td>&gt;15% of new users</td>
+          <td>90 days post-launch</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Guardrail Metrics</h3>
+    <p>These are not success targets. They are circuit breakers. If any of these move in the wrong direction, an initiative is optimizing one metric at the expense of the broader business.</p>
+    <ul>
+      <li><strong>New user acquisition volume.</strong> Pricing changes and repositioning must not reduce top-of-funnel. A 20% churn improvement is net negative if acquisition volume drops 30%.</li>
+      <li><strong>Refund and cancellation rate.</strong> Especially relevant post annual-plan launch. Lock-in without delivered value converts to refund requests.</li>
+      <li><strong>User-reported satisfaction (NPS or equivalent).</strong> A qualitative check against purely quantitative optimization. If primary metrics improve but NPS declines, something is being gamed rather than genuinely fixed.</li>
+    </ul>
+
+    <h3>Review Cadence</h3>
+    <ul>
+      <li><strong>Weekly:</strong> Onboarding completion rate and Day-7 cohort retention during the onboarding redesign sprint</li>
+      <li><strong>Monthly:</strong> Churn rate, ARPU, per-initiative KPIs, guardrail metrics</li>
+      <li><strong>Quarterly:</strong> LTV:CAC ratio, CAC by channel, full unit economics refresh</li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span>Almentor: Product Manager Discovery Skills Assessment</span>
+    <span>April 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
